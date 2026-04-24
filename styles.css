@@ -8,7 +8,7 @@
 /* CSS Variables for colors and spacing */
 :root {
     --primary-color: #7c7cff;
-    --background: #cf0707;
+    --background: #f5f5f5;
     --widget-bg: #ffffff;
     --text-primary: #333333;
     --text-secondary: #999999;
@@ -316,10 +316,12 @@ button:focus {
     padding: var(--spacing-sm);
     border-bottom: 1px solid var(--border-color);
     transition: var(--transition);
+    background-color: transparent !important;
+    border-radius: 0;
 }
 
 .todo-item:hover {
-    background-color: var(--background);
+    background-color: rgba(124, 124, 255, 0.05) !important;
 }
 
 .todo-item:last-child {
