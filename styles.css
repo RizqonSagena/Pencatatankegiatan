@@ -1,0 +1,558 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for colors and spacing */
+:root {
+    --primary-color: #7c7cff;
+    --background: #cf0707;
+    --widget-bg: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #999999;
+    --border-color: #e0e0e0;
+    --success: #4caf50;
+    --danger: #ff6b6b;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+/* Dark mode variables */
+body.dark-mode {
+    --primary-color: #9d9dff;
+    --background: #1a1a2e;
+    --widget-bg: #16213e;
+    --text-primary: #eaeaea;
+    --text-secondary: #a0a0a0;
+    --border-color: #2a2a4e;
+    --success: #66bb6a;
+    --danger: #ff8a80;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --gradient-start: #0f0c29;
+    --gradient-end: #302b63;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: var(--spacing-lg);
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+/* Grid Layout for widget positioning */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Greeting widget spans full width at top */
+.greeting-widget {
+    grid-column: 1 / -1;
+}
+
+/* Timer widget in bottom left */
+.timer-widget {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+/* Todo widget in bottom right */
+.todo-widget {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Links widget below timer */
+.links-widget {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+/* Widget Card Styling */
+.widget {
+    background-color: var(--widget-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+}
+
+.widget:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.widget h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+/* Greeting Widget Styles */
+.greeting-widget {
+    text-align: center;
+}
+
+.greeting-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+#greeting-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.edit-name-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    opacity: 0.6;
+    transition: var(--transition);
+    margin-bottom: var(--spacing-xs);
+}
+
+.edit-name-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background: none;
+    box-shadow: none;
+}
+
+#current-time {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+#current-date {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* Name input styling */
+.name-input-container {
+    margin-top: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    align-items: center;
+}
+
+.name-input-container input {
+    max-width: 300px;
+}
+
+.name-input-container button {
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--widget-bg);
+    border: none;
+    box-shadow: 0 4px 12px var(--shadow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+/* Focus Timer Widget Styles */
+.timer-widget {
+    text-align: center;
+}
+
+#timer-display {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: var(--spacing-md) 0;
+}
+
+.timer-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-top: var(--spacing-md);
+}
+
+.timer-controls button {
+    background-color: #d0d0ff;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.timer-controls button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 124, 255, 0.3);
+}
+
+.timer-controls button:first-child {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.timer-controls button:first-child:hover {
+    background-color: #6b6bdd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 124, 255, 0.4);
+}
+
+#timer-complete {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: var(--success);
+    color: white;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Button Styles */
+button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #6b6bdd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 124, 255, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+
+/* To-Do List Styles */
+#todo-list {
+    list-style: none;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.todo-item:hover {
+    background-color: var(--background);
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-text {
+    flex: 1;
+    word-break: break-word;
+}
+
+/* Task completion styling - strikethrough */
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.todo-buttons {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.todo-buttons button {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.875rem;
+}
+
+.todo-delete-btn {
+    background-color: var(--danger);
+}
+
+.todo-delete-btn:hover {
+    background-color: #ff5252;
+}
+
+.todo-complete-btn {
+    background-color: var(--success);
+}
+
+.todo-complete-btn:hover {
+    background-color: #45a049;
+}
+
+.todo-edit-btn {
+    background-color: var(--text-secondary);
+}
+
+.todo-edit-btn:hover {
+    background-color: #555555;
+}
+
+.todo-edit-input {
+    flex: 1;
+    padding: var(--spacing-xs);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.todo-save-btn {
+    background-color: var(--success);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.875rem;
+}
+
+.todo-save-btn:hover {
+    background-color: #45a049;
+}
+
+.todo-cancel-btn {
+    background-color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.875rem;
+}
+
+.todo-cancel-btn:hover {
+    background-color: #555555;
+}
+
+/* Quick Links Styles */
+#links-form {
+    flex-wrap: wrap;
+}
+
+#links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+#links-container .link-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+}
+
+#links-container .link-item:hover {
+    background-color: #6b6bdd;
+}
+
+#links-container .link-btn {
+    background: none;
+    color: white;
+    padding: 0;
+    font-weight: 600;
+    flex: 1;
+    text-align: left;
+}
+
+#links-container .link-btn:hover {
+    background: none;
+    transform: none;
+    text-decoration: none;
+}
+
+#links-container .delete-link-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: white;
+}
+
+#links-container .delete-link-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design - Tablet (481px - 768px) */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: var(--spacing-sm);
+    }
+    
+    .greeting-widget {
+        grid-column: 1;
+    }
+    
+    .timer-widget {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    
+    .todo-widget {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    
+    .links-widget {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    
+    #greeting-text {
+        font-size: 1.5rem;
+    }
+    
+    #current-time {
+        font-size: 2.5rem;
+    }
+    
+    #timer-display {
+        font-size: 2.5rem;
+    }
+}
+
+/* Responsive Design - Mobile (320px - 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+    
+    .dashboard {
+        gap: var(--spacing-sm);
+    }
+    
+    .widget {
+        padding: var(--spacing-sm);
+    }
+    
+    .widget h2 {
+        font-size: 1.25rem;
+    }
+    
+    #greeting-text {
+        font-size: 1.25rem;
+    }
+    
+    #current-time {
+        font-size: 2rem;
+    }
+    
+    #current-date {
+        font-size: 1rem;
+    }
+    
+    #timer-display {
+        font-size: 2rem;
+    }
+    
+    .timer-controls {
+        flex-direction: column;
+    }
+    
+    .timer-controls button {
+        width: 100%;
+    }
+    
+    form {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+    
+    #links-form {
+        flex-direction: column;
+    }
+    
+    #links-container {
+        flex-direction: column;
+    }
+    
+    #links-container .link-item {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

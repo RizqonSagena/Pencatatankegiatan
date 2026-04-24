@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Integration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-result {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .pass {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .summary {
+            font-size: 24px;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Life Dashboard - Quick Integration Test</h1>
+    
+    <div class="info test-result">
+        <strong>Instructions:</strong> Click "Run Tests" to verify the integration. 
+        This will check if all modules are properly initialized.
+    </div>
+
+    <button onclick="runTests()">Run Tests</button>
+    <button onclick="location.href='index.html'">Open Dashboard</button>
+    <button onclick="location.href='test-integration.html'">Full Test Suite</button>
+
+    <div id="results"></div>
+
+    <script src="app.js"></script>
+    <script>
+        function runTests() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Running Tests...</h2>';
+            
+            const tests = [];
+            let passCount = 0;
+            let failCount = 0;
+
+            function addResult(name, passed, message) {
+                const div = document.createElement('div');
+                div.className = `test-result ${passed ? 'pass' : 'fail'}`;
+                div.innerHTML = `${passed ? '✅' : '❌'} <strong>${name}</strong><br><small>${message}</small>`;
+                results.appendChild(div);
+                
+                if (passed) passCount++;
+                else failCount++;
+            }
+
+            // Test 1: Check if modules are defined
+            try {
+                if (typeof StorageModule !== 'undefined') {
+                    addResult('StorageModule Defined', true, 'StorageModule is properly defined');
+                } else {
+                    addResult('StorageModule Defined', false, 'StorageModule is not defined');
+                }
+            } catch (e) {
+                addResult('StorageModule Defined', false, e.message);
+            }
+
+            try {
+                if (typeof GreetingModule !== 'undefined') {
+                    addResult('GreetingModule Defined', true, 'GreetingModule is properly defined');
+                } else {
+                    addResult('GreetingModule Defined', false, 'GreetingModule is not defined');
+                }
+            } catch (e) {
+                addResult('GreetingModule Defined', false, e.message);
+            }
+
+            try {
+                if (typeof TimerModule !== 'undefined') {
+                    addResult('TimerModule Defined', true, 'TimerModule is properly defined');
+                } else {
+                    addResult('TimerModule Defined', false, 'TimerModule is not defined');
+                }
+            } catch (e) {
+                addResult('TimerModule Defined', false, e.message);
+            }
+
+            try {
+                if (typeof TodoModule !== 'undefined') {
+                    addResult('TodoModule Defined', true, 'TodoModule is properly defined');
+                } else {
+                    addResult('TodoModule Defined', false, 'TodoModule is not defined');
+                }
+            } catch (e) {
+                addResult('TodoModule Defined', false, e.message);
+            }
+
+            try {
+                if (typeof LinksModule !== 'undefined') {
+                    addResult('LinksModule Defined', true, 'LinksModule is properly defined');
+                } else {
+                    addResult('LinksModule Defined', false, 'LinksModule is not defined');
+                }
+            } catch (e) {
+                addResult('LinksModule Defined', false, e.message);
+            }
+
+            // Test 2: Check if modules have init functions
+            try {
+                if (typeof GreetingModule.init === 'function') {
+                    addResult('GreetingModule.init()', true, 'init function exists');
+                } else {
+                    addResult('GreetingModule.init()', false, 'init function not found');
+                }
+            } catch (e) {
+                addResult('GreetingModule.init()', false, e.message);
+            }
+
+            try {
+                if (typeof TimerModule.init === 'function') {
+                    addResult('TimerModule.init()', true, 'init function exists');
+                } else {
+                    addResult('TimerModule.init()', false, 'init function not found');
+                }
+            } catch (e) {
+                addResult('TimerModule.init()', false, e.message);
+            }
+
+            try {
+                if (typeof TodoModule.init === 'function') {
+                    addResult('TodoModule.init()', true, 'init function exists');
+                } else {
+                    addResult('TodoModule.init()', false, 'init function not found');
+                }
+            } catch (e) {
+                addResult('TodoModule.init()', false, e.message);
+            }
+
+            try {
+                if (typeof LinksModule.init === 'function') {
+                    addResult('LinksModule.init()', true, 'init function exists');
+                } else {
+                    addResult('LinksModule.init()', false, 'init function not found');
+                }
+            } catch (e) {
+                addResult('LinksModule.init()', false, e.message);
+            }
+
+            // Test 3: Check StorageModule functions
+            try {
+                if (typeof StorageModule.save === 'function' && 
+                    typeof StorageModule.load === 'function') {
+                    addResult('StorageModule Functions', true, 'save() and load() functions exist');
+                } else {
+                    addResult('StorageModule Functions', false, 'save() or load() function missing');
+                }
+            } catch (e) {
+                addResult('StorageModule Functions', false, e.message);
+            }
+
+            // Test 4: Check StorageModule keys
+            try {
+                if (StorageModule.TASKS_KEY === 'dashboard_tasks' && 
+                    StorageModule.LINKS_KEY === 'dashboard_links') {
+                    addResult('Storage Keys', true, 'TASKS_KEY and LINKS_KEY are correctly defined');
+                } else {
+                    addResult('Storage Keys', false, 'Storage keys are not correctly defined');
+                }
+            } catch (e) {
+                addResult('Storage Keys', false, e.message);
+            }
+
+            // Test 5: Test localStorage functionality
+            try {
+                const testData = [{ id: 'test', text: 'Test' }];
+                StorageModule.save('test_key', testData);
+                const loaded = StorageModule.load('test_key');
+                
+                if (JSON.stringify(loaded) === JSON.stringify(testData)) {
+                    addResult('Storage Save/Load', true, 'Data can be saved and loaded correctly');
+                    localStorage.removeItem('test_key'); // Clean up
+                } else {
+                    addResult('Storage Save/Load', false, 'Data mismatch after save/load');
+                }
+            } catch (e) {
+                addResult('Storage Save/Load', false, e.message);
+            }
+
+            // Test 6: Test error handling
+            try {
+                const result = StorageModule.load('nonexistent_key');
+                if (Array.isArray(result) && result.length === 0) {
+                    addResult('Error Handling', true, 'Missing data returns empty array');
+                } else {
+                    addResult('Error Handling', false, 'Missing data does not return empty array');
+                }
+            } catch (e) {
+                addResult('Error Handling', false, e.message);
+            }
+
+            // Summary
+            const summary = document.createElement('div');
+            summary.className = 'summary';
+            const total = passCount + failCount;
+            const percentage = Math.round((passCount / total) * 100);
+            
+            if (passCount === total) {
+                summary.innerHTML = `
+                    <div style="color: #155724; font-size: 48px;">✅</div>
+                    <div><strong>All Tests Passed!</strong></div>
+                    <div>${passCount} / ${total} tests passed (${percentage}%)</div>
+                    <div style="margin-top: 10px; font-size: 14px;">
+                        Integration is working correctly. Open the dashboard to test functionality.
+                    </div>
+                `;
+            } else {
+                summary.innerHTML = `
+                    <div style="color: #721c24; font-size: 48px;">❌</div>
+                    <div><strong>Some Tests Failed</strong></div>
+                    <div>${passCount} / ${total} tests passed (${percentage}%)</div>
+                    <div>${failCount} test(s) failed</div>
+                `;
+            }
+            
+            results.insertBefore(summary, results.firstChild);
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(runTests, 100);
+        });
+    </script>
+</body>
+</html>
