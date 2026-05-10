@@ -559,63 +559,76 @@ body.light-mode #todo-input {
 
 @media (max-width: 768px) {
     .app-container {
-        padding: 1.5rem 1rem;
-        gap: 1.5rem;
+        padding: 1.5rem 1rem !important;
+        gap: 1.2rem !important;
     }
 
     .glass-header {
-        padding: 1.5rem;
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1.5rem;
+        padding: 1.5rem !important;
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 1.5rem !important;
     }
 
     .greeting-area h1 {
-        font-size: 1.8rem;
+        font-size: 1.8rem !important;
     }
 
     .progress-area {
-        width: 100%;
+        width: 100% !important;
     }
 
     .theme-toggle {
-        top: 1rem;
-        right: 1rem;
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.2rem;
+        top: 1rem !important;
+        right: 1rem !important;
+        width: 3rem !important;
+        height: 3rem !important;
+        font-size: 1.2rem !important;
     }
 
     #todo-form {
+        display: flex !important;
         flex-direction: column !important;
         gap: 1rem !important;
+        width: 100% !important;
     }
 
     .input-group {
+        display: block !important; /* Gunakan block agar elemen di dalamnya pasti turun */
         width: 100% !important;
-        flex-direction: column !important;
         padding: 0.75rem !important;
-        gap: 0.8rem !important;
         background: rgba(0, 0, 0, 0.3) !important;
     }
 
     #todo-input {
+        display: block !important;
         width: 100% !important;
         text-align: center !important;
         font-size: 1rem !important;
+        padding: 0.8rem 0 !important;
+        margin-bottom: 0.5rem !important;
+        border-bottom: 1px solid var(--card-border) !important;
+        border-radius: 0 !important;
     }
 
     .priority-toggle {
+        display: flex !important;
         justify-content: center !important;
-        border-top: 1px solid var(--card-border) !important;
+        align-items: center !important;
         width: 100% !important;
-        padding-top: 0.8rem !important;
+        padding: 0.5rem 0 !important;
+    }
+
+    .priority-label {
+        width: auto !important;
+        background: rgba(255, 255, 255, 0.05) !important;
     }
 
     #add-task-btn {
         width: 100% !important;
-        padding: 1.2rem !important;
+        padding: 1rem !important;
         font-size: 1.1rem !important;
+        height: 3.5rem !important;
     }
 
     /* Tampilkan tombol aksi (hapus) secara permanen di HP */
