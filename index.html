@@ -1,63 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Dashboard</title>
+    <meta name="description" content="Personal To-Do List with priority tracking and daily progress.">
+    <title>TaskMaster | Personal Productivity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
         <span class="theme-icon">🌙</span>
     </button>
-    <div class="dashboard">
-        <!-- Greeting Widget -->
-        <section class="widget greeting-widget">
-            <div class="greeting-header">
-                <div id="greeting-text"></div>
-                <button id="edit-name-btn" class="edit-name-btn hidden" title="Edit name">✏️</button>
-            </div>
-            <div id="current-time"></div>
-            <div id="current-date"></div>
-            <div class="name-input-container" id="name-input-container">
-                <input type="text" id="name-input" placeholder="Enter your name...">
-                <button id="save-name-btn">Save Name</button>
-            </div>
-        </section>
 
-        <!-- Focus Timer Widget -->
-        <section class="widget timer-widget">
-            <h2>Focus Timer</h2>
-            <div id="timer-display">25:00</div>
-            <div class="timer-controls">
-                <button id="timer-start">Start</button>
-                <button id="timer-stop">Stop</button>
-                <button id="timer-reset">Reset</button>
+    <main class="app-container">
+        <!-- Header Section -->
+        <header class="glass-header">
+            <div class="greeting-area">
+                <h1 id="greeting-text">Hello, <span id="user-name-display">Friend</span></h1>
+                <p id="current-date">Sunday, May 10, 2026</p>
             </div>
-            <div id="timer-complete" class="hidden">Session Complete!</div>
-        </section>
+            <div class="progress-area">
+                <div class="progress-info">
+                    <span>Daily Progress</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div id="success-message" class="success-message hidden">
+                    Luar biasa! Semua tugas hari ini sudah selesai!
+                </div>
+            </div>
+        </header>
 
-        <!-- To-Do List Widget -->
-        <section class="widget todo-widget">
-            <h2>To-Do List</h2>
+        <!-- Warning Banner -->
+        <div id="priority-warning" class="warning-banner hidden">
+            <span class="warning-icon">⚠️</span>
+            <span class="warning-message">You have urgent priority tasks pending!</span>
+        </div>
+
+        <!-- Input Section -->
+        <section class="glass-card input-section">
             <form id="todo-form">
-                <input type="text" id="todo-input" placeholder="Add a new task...">
-                <button type="submit">Add</button>
+                <div class="input-group">
+                    <input type="text" id="todo-input" placeholder="What needs to be done?" required>
+                    <div class="priority-toggle">
+                        <input type="checkbox" id="priority-check" class="hidden-checkbox">
+                        <label for="priority-check" class="priority-label" title="Mark as Priority">
+                            <span class="star-icon">★</span>
+                            Priority
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" id="add-task-btn">Add Task</button>
             </form>
-            <ul id="todo-list"></ul>
         </section>
 
-        <!-- Quick Links Widget -->
-        <section class="widget links-widget">
-            <h2>Quick Links</h2>
-            <form id="links-form">
-                <input type="text" id="link-label" placeholder="Label">
-                <input type="text" id="link-url" placeholder="URL">
-                <button type="submit">Add Link</button>
-            </form>
-            <div id="links-container"></div>
-        </section>
-    </div>
+        <!-- Name Input Modal (Hidden if name exists) -->
+        <div id="name-modal" class="modal hidden">
+            <div class="modal-content glass-card">
+                <h2>Welcome to TaskMaster</h2>
+                <p>What should I call you?</p>
+                <input type="text" id="name-input" placeholder="Your name...">
+                <button id="save-name-btn">Get Started</button>
+            </div>
+        </div>
+
+        <!-- Tasks Container -->
+        <div class="tasks-grid">
+            <!-- Priority Tasks -->
+            <section class="tasks-section">
+                <div class="section-header">
+                    <h2>🔥 Priority Tasks</h2>
+                    <span id="priority-count" class="count-badge">0</span>
+                </div>
+                <ul id="priority-list" class="task-list">
+                    <!-- Tasks will be injected here -->
+                </ul>
+            </section>
+
+            <!-- Normal Tasks -->
+            <section class="tasks-section">
+                <div class="section-header">
+                    <h2>📝 Daily Tasks</h2>
+                    <span id="normal-count" class="count-badge">0</span>
+                </div>
+                <ul id="normal-list" class="task-list">
+                    <!-- Tasks will be injected here -->
+                </ul>
+            </section>
+        </div>
+    </main>
+
     <script src="app.js"></script>
 </body>
+
 </html>
